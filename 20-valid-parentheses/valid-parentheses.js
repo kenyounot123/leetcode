@@ -8,16 +8,14 @@ var isValid = function(s) {
         if (char === "(" || char === "[" || char === "{") {
             stack.push(char)
         } else {
-            if (stack.length === 0) {
-                return false
-            } else {
-                const checkChar = stack.pop()
-                if (checkChar + char === "()" || checkChar + char === "[]" || checkChar + char === "{}") {
-                    continue;
-                } else {
-                    return false
-                }
-            }
+            if (stack.length === 0 || 
+                (char === ")" && stack[stack.length - 1] !== "(") ||
+                (char === "]" && stack[stack.length - 1] !== "[") ||
+                (char === "}" && stack[stack.length - 1] !== "{")) {
+                return false;
+            } 
+            stack.pop();
+            
         }
     }
     return !stack.length;
