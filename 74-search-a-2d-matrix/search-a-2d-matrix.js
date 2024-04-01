@@ -20,9 +20,6 @@ var searchMatrix = function(matrix, target) {
             break
         }
     }
-    console.log(left)
-    console.log(right)
-    console.log(left <= right)
     if (!(left <= right)){
         return false
     }
@@ -40,5 +37,3 @@ var searchMatrix = function(matrix, target) {
     }
     return false
 };
-
-// [0,1,2,3,4,5]
