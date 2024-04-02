@@ -11,7 +11,6 @@ var evalRPN = function(tokens) {
             num !== "*" &&
             num !== "/") {
                 stack.push(num)
-                console.log(stack)
         } else {
             if (num === "+") {
                 ans = parseInt(stack[stack.length - 2]) + parseInt(stack[stack.length - 1])
@@ -25,7 +24,6 @@ var evalRPN = function(tokens) {
                 stack.push(ans)
             } else if (num === "/") {
                 ans = Math.trunc(parseInt(stack[stack.length - 2]) / parseInt(stack[stack.length - 1]))
-                console.log(ans)
                 stack.pop()
                 stack.pop()
                 stack.push(ans)
