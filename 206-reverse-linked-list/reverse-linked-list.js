@@ -11,14 +11,26 @@
  */
 var reverseList = function(head) {
     // Iteratively (2 pointers)
-    let prev = null;
-    let curr = head;
-    while (curr) {
-        const nxt = curr.next
-        
-        curr.next = prev
-        prev = curr
-        curr = nxt
+    // let prev = null;
+    // let curr = head;
+    // while (curr) {
+    //     const nxt = curr.next
+    //     curr.next = prev
+    //     prev = curr
+    //     curr = nxt
+    // }
+    // return prev
+
+    if (!head) {
+        return null;
     }
-    return prev
+    let newHead = head
+    if (head.next) {
+        newHead = reverseList(head.next)
+        
+        head.next.next = head
+        
+    }
+    head.next = null 
+    return newHead
 };
