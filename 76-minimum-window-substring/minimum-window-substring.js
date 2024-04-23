@@ -8,7 +8,7 @@ var minWindow = function(s, t) {
     if (t === "") {
         return ""
     }
-    let window = new Map()
+    let window = new Map() // Maps the letters in our window  to the count of it
     let char = new Map() // maps the letter to the count of it
     for (let c of t) {
         char.set(c, (1 + (char.get(c) || 0)) )
@@ -18,12 +18,17 @@ var minWindow = function(s, t) {
     let res = [-1,-1]
     let have = 0;
     let l = 0;
+    // Iterate through s while putting the chars in our window map
     for (let r = 0; r < s.length; r++) {
         const c = s[r]
         window.set(c, (1 + (window.get(c) || 0)))
+        // for each letter we check if we can increment our have pointer
         if (char.has(c) && window.get(c) === char.get(c)) {
             have += 1
         }
+        // When we have all required characters, update min length and result
+        // then keep looping to shift the left pointer untill we do not have 
+        // the required characters. That way we can check if there are other results
         while (have === need) {
             
             if (minLength === -1 || (r - l + 1) < minLength) {
