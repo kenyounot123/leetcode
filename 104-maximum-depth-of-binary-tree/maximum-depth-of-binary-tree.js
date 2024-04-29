@@ -11,10 +11,29 @@
  * @return {number}
  */
 var maxDepth = function(root) {
+    // Iterative DFS
+    // if (!root) return 0
+
+    // let stack = [{node: root, level: 1}]
+    // let depth = 0
+
+    // while (stack.length > 0) {
+    //     const { node, level } = stack.pop()
+    //     depth = Math.max(depth, level)
+
+    //     if (node.left) stack.push({node: node.left, level: level + 1})
+    //     if (node.right) stack.push({node: node.right, level: level + 1})
+    // }
+
+    // return depth
+
     // Recursive depth first search
     if (!root) {
         return 0
     }
-    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
+    let left = maxDepth(root.left)
+    let right = maxDepth(root.right)
+
+    return 1 + Math.max(left, right)
 
 };
