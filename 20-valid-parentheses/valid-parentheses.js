@@ -4,7 +4,7 @@
  */
 var isValid = function(s) {
     let stack = [];
-    for (char of s) {
+    for (let char of s) {
         if (char === "(" || char === "[" || char === "{") {
             stack.push(char)
         } else {
@@ -12,11 +12,10 @@ var isValid = function(s) {
                 (char === ")" && stack[stack.length - 1] !== "(") ||
                 (char === "]" && stack[stack.length - 1] !== "[") ||
                 (char === "}" && stack[stack.length - 1] !== "{")) {
-                return false;
-            } 
+                return false
+            }
             stack.pop();
-            
         }
     }
-    return !stack.length;
+    return !stack.length
 };
