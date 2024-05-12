@@ -1,4 +1,3 @@
-
 var MinStack = function() {
     this.stack = []
 };
@@ -37,12 +36,3 @@ MinStack.prototype.top = function() {
 MinStack.prototype.getMin = function() {
     return (this.stack.length > 0) ? this.stack[this.stack.length - 1].min : null
 };
-
-/** 
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(val)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
