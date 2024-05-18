@@ -14,7 +14,7 @@ var threeSum = function(nums) {
     }
     nums.sort((a,b) => a - b)
     let target = 0;
-    // turn this problem in to 2 sum
+    // turn this problem in to 2 sum with edge cases
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] > 0) {
             break
