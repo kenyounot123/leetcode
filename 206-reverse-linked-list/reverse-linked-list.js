@@ -10,27 +10,14 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    // Iteratively (2 pointers)
-    // let prev = null;
-    // let curr = head;
-    // while (curr) {
-    //     const nxt = curr.next
-    //     curr.next = prev
-    //     prev = curr
-    //     curr = nxt
-    // }
-    // return prev
-
-    if (!head) {
-        return null;
-    }
-    let newHead = head
-    if (head.next) {
-        newHead = reverseList(head.next)
-        
-        head.next.next = head
+    let prev = null
+    let curr = head
+    while(curr) {
+        const tmp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = tmp
         
     }
-    head.next = null 
-    return newHead
+    return prev 
 };
