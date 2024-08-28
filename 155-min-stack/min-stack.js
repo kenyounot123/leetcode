@@ -1,6 +1,14 @@
+/*
+Design a stack that supports push, pop, top,
 
+Retrieving the minimum element in constant time.
+
+pop, top and getMin operations will always be called on non-empty stacks.
+    -O(1) 
+*/
 var MinStack = function() {
     this.stack = []
+    this.min = []
 };
 
 /** 
@@ -8,12 +16,13 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(val) {
-    if (!this.stack.length) {
-        this.stack.push({val: val, min: val})
+    // when pushing to stack we should update the min value
+    if (this.stack.length == 0) {
+        this.stack.push(val)
+        this.min.push(val)
     } else {
-        const prevMin = this.stack[this.stack.length - 1].min
-        const newMin = Math.min(val, prevMin)
-        this.stack.push({val: val, min: newMin})
+        this.min.push(Math.min(val, this.min[this.min.length - 1]))
+        this.stack.push(val)
     }
 };
 
@@ -21,21 +30,22 @@ MinStack.prototype.push = function(val) {
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    this.stack.pop() 
+    this.stack.pop()
+    this.min.pop()
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return (this.stack.length > 0) ? this.stack[this.stack.length - 1].val : null
+    return this.stack[this.stack.length - 1]
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.stack[this.stack.length - 1].min
+    return this.min[this.min.length - 1]
 };
 
 /** 
