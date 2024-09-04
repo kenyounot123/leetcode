@@ -3,15 +3,28 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let max = 0;
+    // input is an array of nums
+    // output is max profit or 0
+    // prices =[7,1,5,3,6,4]
+    // no negatives, length can be 1
 
-    for (let i = 0; i < prices.length; i++) {
-        let r = i + 1;
-        while (prices[i] < prices[r]) {
-            const profit = prices[r] - prices[i]
-            max = Math.max(profit, max)
+    // while iterating determine when to buy
+    // and determine when to sell
+
+
+    let maxPrice = 0
+    let l = 0
+    let r = 1
+    while (r < prices.length) {
+        if (prices[r] < prices[l]) {
+            l = r
+            r++
+        } else {
+            profit = prices[r] - prices[l]
+            maxPrice = Math.max(maxPrice, profit)
             r++
         }
     }
-    return max
-}
+    return maxPrice
+
+};
