@@ -9,38 +9,40 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+//  rverse the list iteratively and recursively
+// 1 -> 2 -> 3 -> 4 -> 5
+// head next
+
 var reverseList = function(head) {
-    // traverse the list till the end
-    // while traversing, reverse the nodes 
-
-    // at 1, what are my actions ? 
-    // create a temp node 2 , then set 1.next = prev
-    // at 2 what are my actions
-
-    // iteratively we can use pointers
-    /*
+    /* iteratively w 2 pointers
+    let current = head 
     let prev = null
-    let current = head
+
     while (current) {
         const next = current.next
         current.next = prev
-        prev = current
-        current = next
+        prev = current 
+        current = next 
     }
     return prev
     */
+    
+    // 1 -> 2 
+    // base case
+    // if head is null then we return null
+    // recursive step
+
 
     if (!head) {
-        return null 
+        return null
     }
     let newHead = head
     if (head.next) {
         newHead = reverseList(head.next)
         head.next.next = head
+        head.next = null
     }
-    head.next = null 
     return newHead
-
-
+     
 
 };
