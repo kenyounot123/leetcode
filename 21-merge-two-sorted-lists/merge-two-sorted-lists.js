@@ -14,19 +14,23 @@
 // output: 1 list sorted
 // both lists are sorted 
 // edge case: what if 1 list is longer than the other ?
-// what is list is empty?
+// what if list is empty?
+// [1,2,4]
+// t
+// [1,3]
 var mergeTwoLists = function(list1, list2) {
     let dummy = new ListNode()
-    let tail = dummy
-    while (list1 && list2) {
-        if (list1.val < list2.val){
+    let tail = dummy 
+    while(list1 && list2) {
+        if (list1.val < list2.val) {
             tail.next = list1
+            tail = list1
             list1 = list1.next
         } else {
             tail.next = list2
+            tail = list2
             list2 = list2.next
         }
-        tail = tail.next 
     }
     if (list1) {
         tail.next = list1
@@ -34,5 +38,4 @@ var mergeTwoLists = function(list1, list2) {
         tail.next = list2
     }
     return dummy.next
-};
-// dummy -> 1 -> tail
+}
