@@ -46,7 +46,7 @@ class Solution(object):
                 elif num == '/':
                     stack.append(int(float(num2) / num1))
             else:
-                stack.append(num)
+                stack.append(int(num))
 
-        return int(stack[0])
+        return stack[0]
 
