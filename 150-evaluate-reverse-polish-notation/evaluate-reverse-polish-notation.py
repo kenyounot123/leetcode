@@ -39,14 +39,14 @@ class Solution(object):
                 num2 = int(stack.pop())
                 if num == '*':
                     stack.append(num2 * num1)
-                elif num == '+':
+                if num == '+':
                     stack.append(num2 + num1)
-                elif num == '-':
+                if num == '-':
                     stack.append(num2 - num1)
-                elif num == '/':
+                if num == '/':
                     stack.append(int(float(num2) / num1))
             else:
                 stack.append(int(num))
 
-        return stack[0]
+        return stack.pop()
 
