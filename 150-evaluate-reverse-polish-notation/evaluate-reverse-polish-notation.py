@@ -28,6 +28,7 @@ class Solution(object):
         at * 
             [9]
         
+        iterating through tokens so O(n) where n is tokens length
         return stack[0]
         '''
         stack = []
