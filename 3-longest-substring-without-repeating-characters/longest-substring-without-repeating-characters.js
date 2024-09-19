@@ -2,22 +2,25 @@
  * @param {string} s
  * @return {number}
  */
+/*
+    inputs: string s
+    outputs: integer = the longest substring without repeating characteres
+*/
 var lengthOfLongestSubstring = function(s) {
-    const chars = new Set();
-    let l = 0;
-    let max = 0;
+    let freq = new Set()
+    let l = 0
+    let r = 0
+    let maxLength = 0
 
-
-    for (let r = 0; r < s.length; r++) {
-        while (chars.has(s[r])) {
-            chars.delete(s[l])
+    while (r < s.length) {
+        if (!freq.has(s[r])) {
+            maxLength = Math.max(maxLength, (r - l + 1))
+            freq.add(s[r])
+            r++
+        } else {
+            freq.delete(s[l])
             l++
         }
-        chars.add(s[r])
-        max = Math.max(max, (r - l) + 1)
     }
-    return max
-   
+    return maxLength
 };
-//bbbb
-//pwwkew
