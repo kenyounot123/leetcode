@@ -3,23 +3,20 @@
  * @return {number[]}
  */
 var dailyTemperatures = function(temperatures) {
-    // inputs: temperatures nums[]
-    // outputs: answer[] number of days you have to wait after ith day to get a warmer temperature
-    // summarize: given an array of integers, for each index return the number (answer[i]) of days 
-    // until we get a higher temperature
-
-    // temperatures = [73,74,75,71,69,72,76,73]
-    // so on 73 we need to push 1 to answer []
-    // 74 we need to push 1 to answer
-    // 75 we need to put 4
-    
+    // inputs: temperatures = array of numbers
+    // outputs: answer[]
     let answer = new Array(temperatures.length).fill(0)
+    // O(n^2) 
     let stack = []
-    for (let i = 0; i < temperatures.length; i++) {
+    for (let i = 0; i < temperatures.length; i++){
+        // always decreasing stack => if we encounter a value that is bigger than
+        // most recent stack value we have to keep popping till our stack is decreasing
+
         while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
-            const prevIndex = stack.pop()
-            answer[prevIndex] = i - prevIndex
+            const index = stack.pop()
+            answer[index] = i - index
         }
+
         stack.push(i)
     }
     return answer
