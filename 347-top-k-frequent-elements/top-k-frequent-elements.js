@@ -16,43 +16,26 @@ summarize: given an array of nums and an integer k we want to return the top k m
 
 var topKFrequent = function(nums, k) {
     let output = []
-    let freq = new Map()
-    let counts = new Array(nums.length).fill(0)
+    let freq = new Map() // O(n)
+    let bucket = []
     // {1:3, 2:2, 3:1}
+    // O(n)
     for (let num of nums) {
         freq.set(num, (freq.get(num) || 0) + 1)
     }
-    console.log(freq)
-    // counts = [0,[6,7], [0,1,4,9,-4], [-3]]
+    // buckets = [0,(6,7), (0,1,4,9,-4), (-3)]
     for (let [key, value] of freq) {
-        if (counts[value - 1] === 0) {
-            counts[value - 1] = [key]
+        if (bucket[value]) {
+            bucket[value].push(key)
         } else {
-            counts[value - 1].push(key)
+            bucket[value] = [key]
         }
     }   
     // counts = [[3],[2],[1]]
-    for (let i = counts.length - 1; i >= 0; i--) {
-        // i = 2
-        if (counts[i] === 0 ) {
-            continue
-        } 
-        for (let j = 0; j < counts[i].length; j++) {
-            if (k > 0) {
-                output.push(counts[i][j])
-                k--
-            } else {
-                break
-            }
-        }
-
+    for (let i = bucket.length - 1; i >= 0; i--) {
+       if (bucket[i]) output.push(...bucket[i])
+        if (output.length === k) break
     }
 
-    // [[3],[2],[1],0,0,0,0
-
     return output
-
-
-
-    
 };
