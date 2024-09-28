@@ -3,28 +3,56 @@
  * @param {number} k
  * @return {number[]}
  */
-var topKFrequent = function(nums, k) {
-    // Initial approach is to just iterate through the nums array while getting the count of each element
-    // Then sort it and get the top k choices, but this is O(n log n)
-    // Think bucket sort and how you can get the top k elements without sorting
-    let freq = new Map()
-    let bucket = []
-    let finalAns = []
 
+/*
+Given an integer array nums and an integer k
+return the k most frequent elements
+
+inputs: array nums and an integer k 
+outputs: array nums
+summarize: given an array of nums and an integer k we want to return the top k most frequent elements
+
+*/
+
+var topKFrequent = function(nums, k) {
+    let output = []
+    let freq = new Map()
+    let counts = new Array(nums.length).fill(0)
+    // {1:3, 2:2, 3:1}
     for (let num of nums) {
         freq.set(num, (freq.get(num) || 0) + 1)
     }
-    for (const [num, count] of freq.entries()) {
-        if (bucket[count]){
-            bucket[count].push(num)
+    console.log(freq)
+    // counts = [0,[6,7], [0,1,4,9,-4], [-3]]
+    for (let [key, value] of freq) {
+        if (counts[value - 1] === 0) {
+            counts[value - 1] = [key]
         } else {
-            bucket[count] = [num]
+            counts[value - 1].push(key)
         }
+    }   
+    // counts = [[3],[2],[1]]
+    for (let i = counts.length - 1; i >= 0; i--) {
+        // i = 2
+        if (counts[i] === 0 ) {
+            continue
+        } 
+        for (let j = 0; j < counts[i].length; j++) {
+            if (k > 0) {
+                output.push(counts[i][j])
+                k--
+            } else {
+                break
+            }
+        }
+
     }
+
+    // [[3],[2],[1],0,0,0,0
+
+    return output
+
+
+
     
-    for (let i = bucket.length - 1; i >= 0; i--) {
-        if (bucket[i]) finalAns.push(...bucket[i])
-        if (finalAns.length === k) break
-    }
-    return finalAns
 };
