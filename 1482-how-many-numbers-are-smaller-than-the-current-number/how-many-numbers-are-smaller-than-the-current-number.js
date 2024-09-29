@@ -3,20 +3,23 @@
  * @return {number[]}
  */
 var smallerNumbersThanCurrent = function(nums) {
-    // Create a sorted copy of nums
-    const sorted = [...nums].sort((a, b) => a - b);
-    // Create a hash map to store the smallest index for each number
-    let hm = new Map();
-    
-    // Populate the hash map with the smallest index of each unique number in the sorted array
-    for (let i = 0; i < sorted.length; i++) {
-        if (!hm.has(sorted[i])) {
-            hm.set(sorted[i], i);
+    // summarize: for each number at index i we want to find how many numbers are 
+    // smaller than it such that j != i where nums[j] < nums[i]
+    // nums = [1,2,2,3,8]
+    // map = { 1:0, 2:1, 3:3, 8:4}
+    // ognums = [8,1,2,2,3]
+    // output = [4,0,1,1,]
+    const tmp = [...nums].sort((a,b) => a - b)
+    let hm = new Map()
+    let output = []
+    for (let i = 0; i < nums.length; i++) {
+        if (!hm.has(tmp[i])) {
+            hm.set(tmp[i], i)
         }
     }
+    for (let num of nums) {
+        output.push(hm.get(num))
+    }
     
-    // Create the output array based on the map
-    let output = nums.map(num => hm.get(num));
-    
-    return output;
+    return output
 };
