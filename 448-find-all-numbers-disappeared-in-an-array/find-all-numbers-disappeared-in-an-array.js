@@ -3,33 +3,37 @@
  * @return {number[]}
  */
 var findDisappearedNumbers = function(nums) {
-    // O(n) space
-    // let set = new Set(nums)
-    let outputs = []
-    // for (let i = 1; i <= nums.length; i++) {
-    //     if (!set.has(i)){
-    //         outputs.push(i)
-    //     }
-    // }
-    // [2,1,2,3]
-    // 2 - 1 = 1
-    // [-2,1,2,3]
-    // O(1)
+    // so given an array nums[], we know that nums[i] is always in the range of [1, n] where
+    // n is the length of nums[]. So given this array, find the missing numbers and return them
+    // there may contain duplicate numbers.
+
+    let hs = new Set()
+    let output = []
+    for (let i = 1; i <= nums.length; i++) {
+        hs.add(i)
+    }
+
     for (let num of nums) {
-        const index = Math.abs(num) - 1
-
-        if (nums[index] > 0) {
-            nums[index] = nums[index] * -1
+        if (hs.has(num)) {
+            hs.delete(num)
         }
     }
-    
-    for (let i = 0; i < nums.length; i++){
-        if (nums[i] > 0) {
-            outputs.push(i + 1)
-        }
 
+    for (let val of hs.values()) {
+        output.push(val)
     }
+    return output
+    // nums.forEach((num) => {
+    //     const indexVisited = Math.abs(num) - 1
 
+    //     nums[indexVisited] = Math.abs(nums[indexVisited]) * -1
+    // })
 
-    return outputs
+    // for (let i = 0l i < nums.length; i++) {
+    //   if (nums[i] > 0) {
+    //      output.push(i + 1)
+    //   }
+    //}
+    // return output
+
 };
