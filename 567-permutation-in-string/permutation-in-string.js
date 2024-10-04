@@ -4,40 +4,42 @@
  * @return {boolean}
  */
 var checkInclusion = function(s1, s2) {
-    // Intuition :
-    // Loop through s2 and initializing both left and right pointers at 0
-    // our window that we will be checking is the length of s1
-    // everytime our window is false we will slide it over by 1 
-    // Window is false if !== s1 (can just look at character counts)
-    // Approach: 
-    // Create a hashmap of s1 first to determine what characters are needed when looking at permutations of s1
-    // The required length of our valid window must also be === s1.length
-    // On each iteration of our right pointer we ask "Does our window have this char already ?"
-    // Edge cases:
-    // When sliding our window over by 1 we might also have slided one of our characters that were required
-    // So we must return our checking condition back to normal if this happens.
-    // For example "hello" "orlleho"
+    // inputs: s1 and s1 strings
+    // outputs: we want to return a boolean 
+    // summarize: given two strings s1 and s2 we want tocheck if s2 contains a permutation
+    // of s1, if it does return true, if it doesnt return false
 
-    // if length of s1 > s2 then automatically return false.
+    // what if s1 is larger than s2 ? we should just return false
+    // if its eqaul, we check if they have the number of characters 
+    
     if (s1.length > s2.length) return false;
 
-    let neededChars = {}
-    for (letter of s1) {
-        neededChars[letter] = (neededChars[letter] || 0) + 1
+    let freqS1 = new Map();
+    for (let char of s1) {
+        freqS1.set(char, (freqS1.get(char) || 0) + 1);
     }
+
     let l = 0;
     let r = 0;
-    let requiredLength = s1.length
+    let requiredSize = s1.length;
+
     while (r < s2.length) {
-        if (neededChars[s2[r]] > 0) requiredLength--;
-        neededChars[s2[r]]--
-        r++
-        if (requiredLength === 0) return true;
+        // If the character is in s1, decrease the required size
+        if (freqS1.get(s2[r]) > 0) requiredSize--;
+        freqS1.set(s2[r], (freqS1.get(s2[r]) || 0) - 1); // Decrease frequency of s2[r]
+        r++;
+
+        // Check if all characters have been matched
+        if (requiredSize === 0) return true;
+
+        // If the window size exceeds s1.length, move the left pointer
         if (r - l === s1.length) {
-            if (neededChars[s2[l]] >= 0) requiredLength++;
-            neededChars[s2[l]]++
-            l++
+            if (freqS1.get(s2[l]) >= 0) requiredSize++; // Adjust requiredSize if needed
+            freqS1.set(s2[l], (freqS1.get(s2[l]) || 0) + 1); // Increase frequency for s2[l]
+            l++; // Move left pointer
         }
     }
+
     return false;
+
 };
