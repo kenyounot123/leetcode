@@ -4,26 +4,32 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    let max = 0;
+    // inputs: s and k, s is a string and k is a number
+    // outputs: return length of longest substring
+
+    // summarize: given a string and a maximum of k replacements, can we replace k characters
+    // in the string to get a substring that results in the longest substring.
+
+    // if k === s.length then the longest substring is s.length
+    let maxLength = 0;
+    let countMax = 0
+    let counts = new Map()
+
     let l = 0;
-    let char = {}
-    let valueMax = 0;
-    // We need something to store the count of our letters to see which letter to replace
-    // For instance "BAAABB" k = 2 Should we replace A or B ?
-    // We want to replace A since there are more B's so replacing A would give us a longer length 
-    // So always replace the letter with lower count
-    for (let r = 0; r < s.length; r++) {
-        char[s[r]] = (char[s[r]] + 1) || 1 // If char is not in hash map then initialize it with a value of 1
-        valueMax = Math.max(valueMax, char[s[r]]) // Get the max of counts 
-        
-        // Determines if our 'window' is 'valid' or not 
-        // A valid window means that if I do k replacements in that window,
-        // the whole window is going to be all the same letters and our longest string
-        while (((r - l + 1) - valueMax) > k) { 
-            char[s[l]] -= 1
-            l++   
+    let r = 0;
+    // initialize two pointers l and right 
+    while (r < s.length) {
+        counts.set(s[r], (counts.get(s[r]) || 0) + 1)
+        countMax = Math.max(countMax, counts.get(s[r])) 
+
+        while((r - l) + 1 - countMax > k) {
+            counts.set(s[l], counts.get(s[l]) - 1)
+            l++
         }
-        max = Math.max(max, r - l + 1)
+
+        maxLength = Math.max(maxLength, r - l + 1)
+        r++
     }
-    return max
-}
+
+    return maxLength
+};
