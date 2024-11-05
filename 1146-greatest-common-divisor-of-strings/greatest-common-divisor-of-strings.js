@@ -4,27 +4,19 @@
  * @return {string}
  */
 var gcdOfStrings = function(str1, str2) {
-    // inputs: 2 strings
-    // outputs: string
-    // summarize: given two strings, return the greatest common diviser strings such
-    // that it divides both str1 and str2
-    // for it to divide a string, it must mean that we can form that string out of it.
+    // similar to just saying 2 divides 6 iff 6 = 2 + 2 + 2 
+    // question is just asking given 6 and 9, find the gcd such that x divides 6 and 9 => 9 % 6 = 3 then 6 % 3 = 0 => 3 is gcd
 
     if (str1 + str2 !== str2 + str1) {
         return ""
     }
-    // 6
-    let n = str1.length
-    // 4
-    let k = str2.length
+    let a = str1.length;
+    let b = str2.length;
 
-    //  6 % 4
-    //  2
-    while (k) {
-        let temp = k
-        k = n % k
-        n = temp
+    while (b) { 
+        const tmp = b 
+        b = a % b
+        a = tmp 
     }
-
-    return str1.substring(0,n)
+    return str1.substring(0,a)
 };
