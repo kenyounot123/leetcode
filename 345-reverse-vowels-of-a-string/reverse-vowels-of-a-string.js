@@ -12,10 +12,15 @@ var reverseVowels = function(s) {
         } 
     }
 
-   for (let i = 0, j = allVowelsInString.length - 1; i < j; i++, j--) {
-        const temp = strArray[allVowelsInString[i][1]];
-        strArray[allVowelsInString[i][1]] = strArray[allVowelsInString[j][1]];
-        strArray[allVowelsInString[j][1]] = temp;
+    let l = 0
+    let r = allVowelsInString.length - 1
+    while (l < r) {
+        const tmp = strArray[allVowelsInString[l][1]]
+        strArray[allVowelsInString[l][1]] = strArray[allVowelsInString[r][1]]
+        strArray[allVowelsInString[r][1]] = tmp
+        l++
+        r--
     }
+
     return strArray.join("")
 };
