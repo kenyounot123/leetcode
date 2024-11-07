@@ -3,28 +3,22 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    let output = new Array(nums.length).fill(1)
-    // [1,1,2,6]
-    // [,8,6]
-
-    for (let i = 0; i < nums.length; i++) {
-
-        if (i === 0) {
-            output[i] = 1;
-        } else {
-            output[i] = nums[i - 1] * output[i - 1];
-        }
-    }
     // nums = [1,2,3,4]
-    // output = [1,12,8,6]
-    let right = nums[nums.length - 1]
-    for (let i = nums.length - 1; i >= 0; i--) {
-        if (i === nums.length - 1) {
-            continue
-        } else {
-            output[i] = right * output[i];
-            right = nums[i] * right
-        }
+    // answer = [1,1,2,6]
+
+    // want = [24,12,8,6]
+    let answer = new Array(nums.length).fill(1)
+    for (let i = 1; i < nums.length; i++) {
+          answer[i] = answer[i - 1] * nums[i - 1];
     }
-    return output
-};  
+    let right = nums[nums.length - 1]
+    for (let i = nums.length - 2; i >= 0; i--) {
+        answer[i] = answer[i] * right
+        right *= nums[i]
+    }
+    
+
+
+
+    return answer
+};
