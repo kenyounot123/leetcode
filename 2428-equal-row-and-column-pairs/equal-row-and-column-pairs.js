@@ -18,6 +18,8 @@ var equalPairs = function(grid) {
         cols.set(strCol, (cols.get(strCol) || 0) + 1)
     }
     let pairs = 0
+    console.log(rows)
+    console.log(cols)
     for (const [row,val] of rows) {
         if (cols.has(row)) {
             pairs += cols.get(row) * val
