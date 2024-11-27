@@ -15,15 +15,14 @@ RecentCounter.prototype.ping = function(t) {
     let startIndex = 0
 
     for (let i = 0; i < this.requests.length; i++) {
-        if (this.requests[i] < lowerBound) {
-            continue
-        } else {
-            startIndex = i
-            break
+        if (this.requests[i] >= lowerBound) {
+            startIndex = i;
+            break;
         }
     }
+    this.requests = this.requests.slice(startIndex);
 
-    return this.requests.length - startIndex
+    return this.requests.length 
 };
 
 /** 
