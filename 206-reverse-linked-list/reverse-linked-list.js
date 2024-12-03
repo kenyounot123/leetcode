@@ -9,13 +9,11 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-//  rverse the list iteratively and recursively
-// 1 -> 2 -> 3 -> 4 -> 5
-
 var reverseList = function(head) {
+    if (!head) {
+        return null
+    }
 
-    // null <- 1 2 -> 3
-    //         ^ ^
     let prev = null
     let current = head
 
@@ -25,6 +23,8 @@ var reverseList = function(head) {
         prev = current
         current = tmp
     }
+
     return prev
     
+
 };
