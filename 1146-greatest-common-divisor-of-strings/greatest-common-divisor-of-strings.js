@@ -4,19 +4,22 @@
  * @return {string}
  */
 var gcdOfStrings = function(str1, str2) {
-    // similar to just saying 2 divides 6 iff 6 = 2 + 2 + 2 
-    // question is just asking given 6 and 9, find the gcd such that x divides 6 and 9 => 9 % 6 = 3 then 6 % 3 = 0 => 3 is gcd
-
     if (str1 + str2 !== str2 + str1) {
         return ""
     }
-    let a = str1.length;
-    let b = str2.length;
 
-    while (b) { 
-        const tmp = b 
-        b = a % b
-        a = tmp 
+    let remainder;
+    let lengthOfStr1 = str1.length
+    let lengthOfStr2 = str2.length
+
+    remainder = lengthOfStr1 % lengthOfStr2
+
+    while (remainder != 0) {
+        const tmpRemainder = remainder
+        lengthOfStr1 = lengthOfStr2
+        remainder = lengthOfStr1 % tmpRemainder
+        lengthOfStr2 = tmpRemainder
     }
-    return str1.substring(0,a)
+
+    return str1.slice(0,lengthOfStr2)
 };
