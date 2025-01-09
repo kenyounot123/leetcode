@@ -17,9 +17,6 @@ var reverseVowels = function(s) {
     let r = vowelsInString.length - 1
 
     while (l < r) {
-        console.log(vowelsInString[l][1])
-        console.log(vowelsInString[r][1])
-
         const tmp = strArray[vowelsInString[l][1]]
         strArray[vowelsInString[l][1]] = strArray[vowelsInString[r][1]]
         strArray[vowelsInString[r][1]] = tmp
