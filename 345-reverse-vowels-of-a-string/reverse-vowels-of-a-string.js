@@ -7,13 +7,11 @@ var reverseVowels = function(s) {
     let vowelsInString = []
     let output = ""
 
-    for (let i = 0; i < s.length; i++) {
+    for (let i = s.length - 1; i >= 0; i--) {
         if (vowels.includes(s[i])) {
             vowelsInString.push(s[i])
         }
     }
-
-    vowelsInString.reverse()
 
     for (let i = 0; i < s.length; i++) {
         if (vowels.includes(s[i])) {
