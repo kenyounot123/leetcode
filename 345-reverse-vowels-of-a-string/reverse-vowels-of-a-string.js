@@ -5,21 +5,27 @@
 var reverseVowels = function(s) {
     const vowels = 'aeiouAEIOU'
     let vowelsInString = []
-    let output = ""
-
-    for (let i = s.length - 1; i >= 0; i--) {
-        if (vowels.includes(s[i])) {
-            vowelsInString.push(s[i])
-        }
-    }
+    let strArray = s.split('')
 
     for (let i = 0; i < s.length; i++) {
         if (vowels.includes(s[i])) {
-            output += vowelsInString.shift()
-        } else {
-            output += s[i]
+            vowelsInString.push([s[i], i])
         }
     }
 
-    return output
+    let l = 0
+    let r = vowelsInString.length - 1
+
+    while (l < r) {
+        console.log(vowelsInString[l][1])
+        console.log(vowelsInString[r][1])
+
+        const tmp = strArray[vowelsInString[l][1]]
+        strArray[vowelsInString[l][1]] = strArray[vowelsInString[r][1]]
+        strArray[vowelsInString[r][1]] = tmp
+        l++
+        r--
+    }
+
+    return strArray.join('')
 };
