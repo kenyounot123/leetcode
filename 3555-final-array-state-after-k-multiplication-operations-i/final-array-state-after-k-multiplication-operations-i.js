@@ -9,11 +9,13 @@ var getFinalState = function(nums, k, multiplier) {
     // outputs: an integer []
     // for each num perform operation and return value, get final output as num[]
 
+    // O(k(logn))
+    // O(1)
     while (k > 0) {
-        const min = Math.min(...nums)
         // find min
-        index = nums.indexOf(min)
+        const min = Math.min(...nums)
         // update value at index of min
+        index = nums.indexOf(min)
         nums[index] = min * multiplier
         k -= 1
     }
