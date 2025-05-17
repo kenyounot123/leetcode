@@ -12,14 +12,14 @@ def sort_colors(nums)
     i, j, k = 0, 0, nums.length-1
     while(j <= k)
         if(nums[j] < mid)
-        swap_nums.call(i,j)
-        i += 1
-        j += 1
+            swap_nums.call(i,j)
+            i += 1
+            j += 1
         elsif nums[j] > mid
-        swap_nums.call(j, k)
-        k -= 1
+            swap_nums.call(j, k)
+            k -= 1
         else
-        j += 1
+            j += 1
         end
     end
 end
