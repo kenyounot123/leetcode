@@ -2,11 +2,13 @@
 # @param {String} word2
 # @return {String}
 def merge_alternately(word1, word2)
-    longerWord = [word1.length, word2.length].max
-    mergedWord = ""
-    for index in 0...longerWord do
-        mergedWord += word1[index] if index < word1.length
-        mergedWord += word2[index] if index < word2.length
+    # Inputs: word1 and word2, strings
+    # output: 1 merged string
+    result = []
+    longest_word_length = word1.size >= word2.size ? word1.size : word2.size
+    (0..longest_word_length).each do |i|
+        result << word1[i] if word1[i]
+        result << word2[i] if word2[i]
     end
-    mergedWord
+    result.join("")
 end
