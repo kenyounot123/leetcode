@@ -8,13 +8,10 @@ def is_anagram(s, t)
     end
 
     t.split("").each do |char|
-        if s_word_count.include?(char)
-            s_word_count[char] -= 1 
-        else
-            return false
-        end
+        return false if !s_word_count.has_key?(char)
+        s_word_count[char] -= 1
+        s_word_count.delete(char) if s_word_count[char] == 0 
     end
 
-    return true if s_word_count.values.all? { |v| v == 0 }
-    false
+    return s_word_count.empty?
 end
