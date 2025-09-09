@@ -5,7 +5,6 @@ def max_profit(prices)
     # Output: will be either 0 or profit
     # If prices is sorted and is in descending order, then we return 0
     profit = 0
-    total = 0
     l = 0
     r = 0
     while l <= r && r < prices.length
