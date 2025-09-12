@@ -1,26 +1,21 @@
-class Solution(object):
-    def search(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
-        # inputs: array of integers nums (ascending order) and a integer target
-        # output: return index of target or -1
-        # summarize: given an array of integers that are in ascending order and a 
-        # target, return the index of the target if found, if not return -1
-        # O(n) time complexity of iterating through the whole array
-        # can we make this faster ?
-        # its sorted so can do binary search
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # input: nums[] an array of integers sorted in asccending order and target:int
+        # output: the index of target if found, if not then return -1
+        # sorted array think bsearch
+
         l = 0
         r = len(nums) - 1
-        while (l < r):
-            mid = (l + r) // 2
-            if (nums[mid] < target):
-                l = mid + 1
+    
+        while l <= r:
+            mid = (r + l) // 2
+            if target == nums[mid]:
+                return mid
+            elif target < nums[mid]:
+                r = mid -1
             else:
-                r = mid
+                l = mid + 1
+
+        return -1
             
-        
-        return l if nums[l] == target else -1
-        
+
