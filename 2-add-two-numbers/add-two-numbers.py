@@ -11,7 +11,7 @@ class Solution:
         # 1 -> 2 -> 3
         # 2 -> 4 -> 6
         dummyHead = ListNode(0)
-        tail = dummyHead
+        current = dummyHead
         carry = 0
 
         while l1 is not None or l2 is not None or carry != 0:
@@ -23,14 +23,13 @@ class Solution:
             carry = sum // 10
 
             newNode = ListNode(digit)
-            tail.next = newNode
-            tail = tail.next
+            current.next = newNode
+            current = current.next
 
             l1 = l1.next if l1 is not None else None
             l2 = l2.next if l2 is not None else None
-        result = dummyHead.next
-        dummyHead.next = None
-        return result
+
+        return dummyHead.next
 
        
 
