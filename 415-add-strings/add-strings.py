@@ -4,27 +4,22 @@ class Solution:
         # outputs: sum of those 2 strings as a string
         # no string to int conversion
         # convert string to ascii to get an integer val
-        ans = ""
+        l = len(num1) - 1
+        r = len(num2) - 1
+        output = ""
         carry = 0
-        l = 0
-        r = 0
-        r1 = num1[::-1]
-        r2 = num2[::-1]
-        # "321"
-        # "11"
-        while l < len(num1) or r < len(num2) or carry:
-            d1 = ord(r1[l]) - ord("0") if l < len(num1) else 0
-            d2 = ord(r2[r]) - ord("0") if r < len(num2) else 0
+        while l >= 0 or r >= 0 or carry:
+            d1 = ord(num1[l]) - ord("0") if l >= 0 else 0
+            d2 = ord(num2[r]) - ord("0") if r >= 0 else 0
             total = d1 + d2 + carry
-            carry = total // 10
             remainder = total % 10
+            carry = total // 10
+            output += str(remainder)
 
-            ans += str(remainder)
-            l += 1
-            r += 1
+            l -= 1
+            r -= 1
 
+        return output[::-1]
         
-
-        return ans[::-1]
 
 
