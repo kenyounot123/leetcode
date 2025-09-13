@@ -4,19 +4,17 @@ class Solution:
         # outputs: the longest common prefix or "" if none
         
         # array can never be empty
+        prefix = strs[0]
+        prefix_len = len(prefix)
 
-        compare_s = strs[0]
+        for word in strs[1:]:
+            while prefix != word[:prefix_len]:
+                prefix_len -= 1
+                prefix = prefix[:prefix_len]
+                if prefix_len == 0:
+                    return ""
+        return prefix
 
-        max_pref_len = min(len(s) for s in strs)
 
-        for i in range(max_pref_len):
-            pref = compare_s[i]
 
-            for j in range(1, len(strs)):
-                if pref == strs[j][i]:
-                    continue
-                else:
-                    return compare_s[0:i]
-
-        return compare_s[:max_pref_len]
 
