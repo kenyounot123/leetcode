@@ -16,7 +16,7 @@ class Solution:
             for j in range(i + 1,len(words)):
                 if i > j:
                     return outputs
-                elif isPrefixAndSuffix(words[i], words[j]) == True:
+                elif isPrefixAndSuffix(words[i], words[j]):
                     outputs += 1
                 else:
                     continue
