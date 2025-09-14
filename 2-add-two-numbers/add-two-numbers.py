@@ -10,26 +10,25 @@ class Solution:
         # 1 -> 2 -> 3
         # 1 -> 2 -> 3
         # 2 -> 4 -> 6
-        dummyHead = ListNode(0)
-        current = dummyHead
+        dummy = ListNode()
+        curr = dummy
         carry = 0
 
-        while l1 is not None or l2 is not None or carry != 0:
-            digit1 = l1.val if l1 is not None else 0
-            digit2 = l2.val if l2 is not None else 0
+        while l1 or l2 or carry:
+            d1 = l1.val if l1  else 0
+            d2 = l2.val if l2 else 0
+            total = d1 + d2 + carry
+            d3 = ListNode(total % 10)
+            carry = total // 10
 
-            sum = digit1 + digit2 + carry
-            digit = sum % 10
-            carry = sum // 10
+            curr.next = d3
+            curr = curr.next
 
-            newNode = ListNode(digit)
-            current.next = newNode
-            current = current.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        
+        return dummy.next
 
-            l1 = l1.next if l1 is not None else None
-            l2 = l2.next if l2 is not None else None
-
-        return dummyHead.next
 
        
 
