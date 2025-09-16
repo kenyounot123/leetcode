@@ -8,24 +8,24 @@ class Solution:
         # rotating a matrix 90 degrees involves two main steps:
             # swap top rows with bottom rows
             # swap across diagonal
-
-        length = len(matrix)
-        top, bottom = 0, length - 1
-
-        # nothing happens to middle row if odd
-        while top < bottom:
-            for i in range(length):
-                tmp = matrix[top][i]
-                matrix[top][i] = matrix[bottom][i]
-                matrix[bottom][i] = tmp
+        
+        rows, cols = len(matrix), len(matrix)
+        top = 0
+        bottom = len(matrix) - 1
+        # swap top bottom
+        while top <= bottom:
+            tmp = matrix[top]
+            matrix[top] = matrix[bottom]
+            matrix[bottom] = tmp
             top += 1
             bottom -= 1
         
-        for i in range(length):
-            for j in range(i + 1, length):
-                print(matrix[i][j])
-                tmp = matrix[i][j]
-                matrix[i][j] = matrix[j][i]
-                matrix[j][i] = tmp
-
+        for r in range(rows):
+            for c in range(r, cols):
+                tmp = matrix[r][c]
+                matrix[r][c] = matrix[c][r]
+                matrix[c][r] = tmp
+        
         return matrix
+
+        
