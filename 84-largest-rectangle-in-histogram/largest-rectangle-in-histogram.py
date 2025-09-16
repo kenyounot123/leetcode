@@ -4,24 +4,22 @@ class Solution:
         # outputs: return an area int
         # area = heights[i] * i 
         # we need to find a valid i
+
+        stack = [[0,heights[0]]]
         max_area = 0
-        stack = [] # pair: index, height
-        for i, h in enumerate(heights):
-            start = i
-            while stack and stack[-1][1] > h:
-                idx, height = stack.pop()
-                max_area = max(max_area, height * (i - idx))
-                start = idx
-            stack.append([start, h])
+
+        for i in range(1,len(heights)): 
+            if heights[i] >= stack[-1][1]:
+                stack.append([i,heights[i]])
+            else:
+                while stack and heights[i] < stack[-1][1]:
+                    idx,height = stack.pop()
+                    current_area = height * (i - idx)
+                    max_area = max(max_area, current_area)
+                stack.append([idx, heights[i]])
 
         for i, h in stack:
             width = len(heights) - i
             max_area = max(max_area, h * width)
-
-        return max_area
-
-
-
-
-
+        
         return max_area
