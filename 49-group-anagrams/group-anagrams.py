@@ -3,10 +3,13 @@ class Solution:
         # anagram if the freq count of the str is the same
         # maps 
         freq = {}
-        for word in strs:
-            if "".join(sorted(word)) in freq:
-                freq["".join(sorted(word))].append(word)
+        output = []
+        for s in strs:
+            if "".join(sorted(s)) in freq:
+                freq["".join(sorted(s))].append(s)
             else:
-                freq["".join(sorted(word))] = [word]
+                freq["".join(sorted(s))] = [s]
         
-        return list(freq.values())
+        for k,v in freq.items():
+            output.append(v)
+        return output
