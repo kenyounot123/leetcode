@@ -1,20 +1,19 @@
 class Solution:
     def removeAnagrams(self, words: List[str]) -> List[str]:
-        stack = []
-        output = []
+        def are_anagrams(s1: str, s2: str) -> bool:
+            count = [0] * 26
+            for c in s1:
+                count[ord(c) - ord('a')] += 1
+            for c in s2:
+                count[ord(c) - ord('a')] -= 1
+            return all(c == 0 for c in count)
 
-        if len(words) == 1:
-            return words
-
-        stack.append("".join(sorted(words[0])))
-        output.append(words[0])
-
-        for i in range(1, len(words)):
-            word = "".join(sorted(words[i]))
-            if stack[-1] != word:
-                output.append(words[i])
-                stack.append(word)
-        
-        return output
+        i = 1
+        while i < len(words):
+            if are_anagrams(words[i-1], words[i]):
+                del words[i]
+            else:
+                i += 1
+        return words
 
             
