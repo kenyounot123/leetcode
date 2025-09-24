@@ -1,8 +1,5 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        # sum has to equal 0 find the triplets
-        # no duplicate triplets
-        # 3 pointers
         target = 0
         res = []
         nums.sort()
