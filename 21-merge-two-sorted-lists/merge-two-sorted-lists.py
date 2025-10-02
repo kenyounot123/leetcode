@@ -5,14 +5,12 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        # inputs: two sorted linked lists l1 and l2
-        # outputs: head of merged sorted linked list
-
-        if list1 is None and list2 is None:
-            return list1
         if list1 is None and list2 is not None:
             return list2
         if list1 is not None and list2 is None:
+            return list1
+        
+        if list1 is None and list2 is None:
             return list1
         
         if list1.val <= list2.val:
@@ -21,4 +19,3 @@ class Solution:
         else:
             list2.next = self.mergeTwoLists(list1, list2.next)
             return list2
-        
