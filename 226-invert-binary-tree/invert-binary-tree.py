@@ -10,13 +10,13 @@ class Solution:
         # output: invert and return root
 
         if root is None:
-            return None
+            return
+        
+        left_subtree = self.invertTree(root.left)
+        right_subtree = self.invertTree(root.right)
 
-        tmp = root.left
-        root.left = self.invertTree(root.right)
-        root.right = self.invertTree(tmp)
-
+        root.left = right_subtree
+        root.right = left_subtree
         return root
-
 
         
