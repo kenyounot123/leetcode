@@ -10,17 +10,15 @@ class Solution:
 
         while l <= r:
             mid = (l + r) // 2
-
-            if nums[l] <= nums[r]:
+            if nums[l] < nums[r]:
                 min_element = min(min_element, nums[l])
                 break
-
+            
             if nums[mid] >= nums[l]:
                 min_element = min(min_element, nums[l])
                 l = mid + 1
             else:
                 min_element = min(min_element, nums[mid])
-                r = mid - 1
+                r = mid
 
-
-        return min_element
+        return min_element 
