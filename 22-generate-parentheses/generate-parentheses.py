@@ -1,8 +1,6 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         # Given n pair of parentheses
-        # return all combinations of well formed parethesis
-
         output = []
         
         def dfs(open_p, close_p, s):
@@ -15,7 +13,7 @@ class Solution:
             if close_p < open_p:
                 dfs(open_p, close_p + 1, s + ")")
         
-        dfs(0,0,"")
-
+        dfs(0,0, "")
 
         return output
+            
