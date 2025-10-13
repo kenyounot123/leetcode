@@ -6,20 +6,22 @@
 #         self.right = right
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        # given a root of a binary tree
+        # return length of longest path between any two nodes
         self.diameter = 0
-        
+
         def dfs(node):
             if node is None:
-                return
-            left_tree = dfs(node.left) if node.left else 0
-            right_tree = dfs(node.right) if node.right else 0
-            self.diameter = max(self.diameter, left_tree + right_tree)
-    
-            return 1 + max(left_tree, right_tree)
+                return 0
+            
+            left = dfs(node.left)
+            right = dfs(node.right)
+            self.diameter = max(self.diameter, left + right)
+
+            return 1 + max(left, right)
         
         dfs(root)
-
-        return self.diameter
         
+        return self.diameter
 
         
