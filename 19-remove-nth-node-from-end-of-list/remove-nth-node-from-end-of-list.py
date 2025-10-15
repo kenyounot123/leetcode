@@ -7,8 +7,7 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         # given head of linked list and an integer n
         # return head of linked list after removing nth node FROM THE END of the list
-
-        
+        # [1,2,3,4,5]
         result = ListNode(0, head)
         dummy = result
 
@@ -18,11 +17,8 @@ class Solution:
         while head:
             head = head.next
             dummy = dummy.next
-
+        
         dummy.next = dummy.next.next
 
         return result.next
-
-
-
 
