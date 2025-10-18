@@ -4,7 +4,6 @@ class Solution:
         # answer[i] is the number of days you have to wait after the ith day to get 
         # a warmer temp or 0 if no warmer temp
 
-        temperatures.append(0)
         answer = [0] * len(temperatures)
         stack = []
 
@@ -19,7 +18,5 @@ class Solution:
             
 
             stack.append([i, temp])
-        
-        answer.pop()
 
         return answer
