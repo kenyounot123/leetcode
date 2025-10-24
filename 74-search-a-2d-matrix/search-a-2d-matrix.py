@@ -4,24 +4,26 @@ class Solution:
         r = len(matrix) - 1
 
         while l < r:
-            mid = (l + r) // 2
-            row = matrix[mid]
-            if target > row[len(matrix[mid]) - 1]:
-                l = mid + 1
+            m = (l + r) // 2
+            
+            # 20 > 60
+            if target > matrix[m][-1]:
+                l = m + 1
             else:
-                r = mid
-        
-        target_row = matrix[l]
-        l = 0
-        r = len(target_row) - 1
+                r = m
+            
+        target_row = l
 
-        while l < r:
-            mid = (l + r) // 2
-            if target > target_row[mid]:
-                l = mid + 1
+        new_l = 0
+        new_r = len(matrix[target_row]) - 1
+
+        while new_l < new_r:
+            m = (new_l + new_r) // 2
+            
+            if target > matrix[target_row][m]:
+                new_l = m + 1
             else:
-                r = mid
-        return True if target_row[l] == target else False
+                new_r = m
 
+        return True if target == matrix[target_row][new_l] else False
         
-
