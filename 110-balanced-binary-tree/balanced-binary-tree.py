@@ -12,11 +12,12 @@ class Solution:
             if node is None:
                 return [True, 0]
             
-            l = dfs(node.left)
-            r = dfs(node.right)
+            left_subtree = dfs(node.left)
+            right_subtree = dfs(node.right)
 
-            balanced = l[0] and r[0] and abs(r[1] - l[1]) <= 1
+            is_balanced = left_subtree[0] and right_subtree[0] and abs(left_subtree[1] - right_subtree[1]) <= 1
+
+            return [is_balanced, max(left_subtree[1], right_subtree[1]) + 1]
         
-            return [balanced, 1 + max(l[1],r[1])]
-        
+
         return dfs(root)[0]
