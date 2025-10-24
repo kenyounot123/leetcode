@@ -7,10 +7,10 @@ class Solution:
             m = (l + r) // 2
             
             # 20 > 60
-            if target > matrix[m][-1]:
-                l = m + 1
-            else:
+            if matrix[m][-1] >= target:
                 r = m
+            else:
+                l = m + 1
             
         target_row = l
 
