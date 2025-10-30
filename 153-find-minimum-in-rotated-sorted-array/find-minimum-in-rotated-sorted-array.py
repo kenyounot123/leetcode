@@ -3,22 +3,21 @@ class Solution:
         # given the already sorted rotating array nums[]
         # return the minimum element of this array int
 
-        min_element = float("inf")
+        minimum = float("inf")
 
         l = 0
         r = len(nums) - 1
 
+        # [5,1,2,3,4]
         while l <= r:
             mid = (l + r) // 2
-            if nums[l] < nums[r]:
-                min_element = min(min_element, nums[l])
-                break
             
-            if nums[mid] >= nums[l]:
-                min_element = min(min_element, nums[l])
+            if nums[l] <= nums[mid]:
+                minimum = min(minimum, nums[l])
                 l = mid + 1
             else:
-                min_element = min(min_element, nums[mid])
-                r = mid
+                minimum = min(minimum, nums[mid])
+                r = mid - 1
 
-        return min_element 
+
+        return minimum
