@@ -1,15 +1,14 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # anagram if the freq count of the str is the same
-        # maps 
-        freq = {}
-        output = []
-        for s in strs:
-            if "".join(sorted(s)) in freq:
-                freq["".join(sorted(s))].append(s)
-            else:
-                freq["".join(sorted(s))] = [s]
         
-        for k,v in freq.items():
-            output.append(v)
-        return output
+        anagrams = {}
+
+        for idx,s in enumerate(strs):
+            if "".join(sorted(s)) in anagrams:
+                anagrams["".join(sorted(s))].append(s)
+            else:
+                anagrams["".join(sorted(s))] = [s]
+
+
+
+        return list(anagrams.values())
