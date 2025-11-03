@@ -8,30 +8,38 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        
+        # [1,2,3,4]
+        # [1,4,2,3]
         slow = head
         fast = head
 
         while fast and fast.next:
-            fast = fast.next.next
             slow = slow.next
+            fast = fast.next.next
         
-        second_half_head = slow.next
-        prev = None
+        second = slow.next
         slow.next = None
+        prev = None
 
-        while second_half_head:
-            tmp = second_half_head.next
-            second_half_head.next = prev
-            prev = second_half_head
-            second_half_head = tmp
+        while second:
+            tmp = second.next
+            second.next = prev
+
+            prev = second
+            second = tmp
         
         first = head
         second = prev
 
+        # [ 1, 2, 3 ] [ 5, 4 ]
+        # [1, 5, 2, 4, 3]
+
         while second:
-            tmp1, tmp2 = first.next, second.next
+            temp1, temp2 = first.next, second.next
             first.next = second
-            second.next = tmp1
-            first = tmp1
-            second = tmp2
+            second.next = temp1
+            first = temp1
+            second = temp2
+
+
+
