@@ -11,8 +11,8 @@ class Solution:
         # 1 -> 2 -> 3
 
         carry = 0
-        current = ListNode(0, None)
-        dummy = ListNode(0, current)
+        dummy = ListNode()
+        curr = dummy 
 
         while l1 or l2 or carry:
             d1 = l1.val if l1 else 0
@@ -23,13 +23,13 @@ class Solution:
 
             new_node = ListNode(digit)
 
-            current.next = new_node
-            current = current.next
+            curr.next = new_node
+            curr = curr.next
 
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
         
 
-        return dummy.next.next
+        return dummy.next
         
 
