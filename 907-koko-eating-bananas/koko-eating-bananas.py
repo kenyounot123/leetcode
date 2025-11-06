@@ -1,26 +1,30 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         # return minimum k such that all bananas are gone within h hours
-        def can_finish(num_bananas):
+
+        # Determine an eating speed such that all bananas will be gone within h hours
+        # [4,11,20,23,30]
+
+        def hours_to_finish(eating_speed):
             hours = 0
-            for num in piles:
-                hours += num // num_bananas
-                if num % num_bananas != 0:
-                    hours += 1
-                if hours > h:
-                    return False
-            return True
+            for i,p in enumerate(piles):
+                if p % eating_speed == 0:
+                    hours += p // eating_speed
+                else:
+                    hours += p // eating_speed + 1
+            return hours
 
-        k = 0
 
+
+        max_bananas = max(piles)
         l = 1
-        r = max(piles)
+        r = max_bananas
 
-        while l <= r:
-            mid = (l + r) // 2
-            if can_finish(mid):
-                k = mid
-                r = mid - 1
-            else:
+        while l < r:
+            mid = (l+r) // 2
+            if hours_to_finish(mid) > h:
                 l = mid + 1
-        return k
+            else:
+                r = mid
+
+        return l
